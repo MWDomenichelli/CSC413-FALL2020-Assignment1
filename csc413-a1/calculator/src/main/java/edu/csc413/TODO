@@ -1,0 +1,19 @@
+- IMPLEMENT OPERATOR
+- IMPLEMENT OPERATOR SUBCLASSES
+  - ADD
+  - SUBTRACT
+  - MULTIPLY
+  - DIVIDE
+  - POWER
+  - NEGATE (EC)
+- EVALUATOR
+  - evaluateSimpleExpression method
+  - evaluteExpression method
+  - "Only InvalidExpressionException is thrown for invalid input"
+
+- UNIT TESTS
+  - Operator
+  - Operator subclasses
+  - NEGATE tests (EC)
+  - evaluateSimpleExpression
+  - evaluteExpression
