@@ -13,7 +13,7 @@ public class PowerOperator extends Operator
     {
       int leftHandSide = lhs.getValue();
       int rightHandSide = rhs.getValue();
-      if(leftHandSide == 0 || rightHandSide > 0) return new Operand(0);
+      if(leftHandSide == 0 || rightHandSide < 0) return new Operand(0);
       int finalValue = 1;
       for(int i = 0; i < rightHandSide; i++)
       {
