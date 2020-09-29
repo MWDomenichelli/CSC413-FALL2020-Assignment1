@@ -11,6 +11,7 @@ public class DivideOperator extends Operator
     
     public Operand execute(Operand lhs, Operand rhs)
     {
+      if(rhs.getValue() == 0) return null;
       return new Operand(lhs.getValue()/rhs.getValue());
     }
 }

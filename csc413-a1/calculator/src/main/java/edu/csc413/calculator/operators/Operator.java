@@ -38,8 +38,8 @@ public abstract class Operator {
 	if(token.equals("*")) return new MultiplyOperator();
 	if(token.equals("/")) return new DivideOperator();
 	if(token.equals("^")) return new PowerOperator();
-	//if(token == '-') return new NegateOperator();
-System.out.println("WTF");
+	//if(isNegation && token.equals("-")) return new NegateOperator();
+
         return null;
     }
 }

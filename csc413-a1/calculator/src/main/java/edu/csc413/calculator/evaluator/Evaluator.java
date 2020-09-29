@@ -77,6 +77,7 @@ public class Evaluator {
         // TODO: Set up data structures needed for operands and operators.
 	Stack<Operand> operandStack = new Stack<>();
 	Stack<Operator> operatorStack = new Stack<>();
+	
         while (expressionTokenizer.hasMoreTokens()) {
             // Filter out whitespace.
             String expressionToken = expressionTokenizer.nextToken();
@@ -88,7 +89,7 @@ public class Evaluator {
             if (Operand.isValid(expressionToken)) {
                 operandStack.push(new Operand(expressionToken));
 	    } else {
-                operatorStack.push(Operator.create(expressionToken));
+		operatorStack.push(Operator.create(expressionToken)); 
             }
         }
 
@@ -105,6 +106,7 @@ public class Evaluator {
 		rightHandOperand = operandStack.pop();
 		leftHandOperand = operandStack.pop();
 		operandStack.push(currentOperator.execute(leftHandOperand,rightHandOperand));
+		if(operandStack.peek() == null) throw new InvalidExpressionException("Divide by zero.");
 	}
         return operandStack.pop().getValue();
     }
