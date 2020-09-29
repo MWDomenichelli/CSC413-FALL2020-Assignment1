@@ -33,7 +33,13 @@ public abstract class Operator {
      * @return Operator An instantiation of the Operator subclass corresponding to token or null if the token is invalid
      */
     public static Operator create(String token) {
-        // TODO: Implement.
+        if(token.equals("+")) return new AddOperator();
+	if(token.equals("-")) return new SubtractOperator();
+	if(token.equals("*")) return new MultiplyOperator();
+	if(token.equals("/")) return new DivideOperator();
+	if(token.equals("^")) return new PowerOperator();
+	//if(token == '-') return new NegateOperator();
+System.out.println("WTF");
         return null;
     }
 }

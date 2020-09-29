@@ -2,7 +2,9 @@ package edu.csc413.calculator.evaluator;
 
 import edu.csc413.calculator.exceptions.InvalidExpressionException;
 
-import java.util.StringTokenizer;
+import java.util.*;
+
+import edu.csc413.calculator.operators.*;
 
 /** Class containing functionality for evaluating arithmetic expressions. */
 public class Evaluator {
@@ -73,7 +75,8 @@ public class Evaluator {
         StringTokenizer expressionTokenizer = new StringTokenizer(expression, DELIMITERS, true);
 
         // TODO: Set up data structures needed for operands and operators.
-
+	Stack<Operand> operandStack = new Stack<>();
+	Stack<Operator> operatorStack = new Stack<>();
         while (expressionTokenizer.hasMoreTokens()) {
             // Filter out whitespace.
             String expressionToken = expressionTokenizer.nextToken();
@@ -83,9 +86,9 @@ public class Evaluator {
 
             // Check if the token is an operand, operator, or parentheses.
             if (Operand.isValid(expressionToken)) {
-                // TODO: Implement this.
-            } else {
-                // TODO: Implement this.
+                operandStack.push(new Operand(expressionToken));
+	    } else {
+                operatorStack.push(Operator.create(expressionToken));
             }
         }
 
@@ -93,6 +96,16 @@ public class Evaluator {
         // algorithm has been implemented correctly, we should expect to have some number of (partially processed)
         // operands and operators in their corresponding stacks.
         // TODO: Implement this.
-        return 0;
+	Operator currentOperator;
+	Operand leftHandOperand;
+	Operand rightHandOperand;
+	while(!operatorStack.isEmpty())
+	{
+		currentOperator = operatorStack.pop();
+		rightHandOperand = operandStack.pop();
+		leftHandOperand = operandStack.pop();
+		operandStack.push(currentOperator.execute(leftHandOperand,rightHandOperand));
+	}
+        return operandStack.pop().getValue();
     }
 }
